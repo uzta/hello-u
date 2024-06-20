@@ -25,7 +25,7 @@ interface ContactDataEntry {
 }
 
 export default function PageCreator() {
-  const [stage, setStage] = React.useState<number>(2);
+  const [stage, setStage] = React.useState<number>(0);
   const [name, setName] = React.useState<string|undefined>(undefined);
 
   const initialEntries: ContactDataEntry[] = [
@@ -266,7 +266,7 @@ export default function PageCreator() {
               {stage === 1 ? 
                 <ContactTable />
               : stage === 2 &&
-                <div className="w-full h-full border border-green-400 mt-8 flex flex-col items-start items-center gap-4">
+                <div className="w-full h-full mt-8 flex flex-col items-start items-center gap-4">
                   <div className="w-full h-8 flex items-center justify-center text-2xl">
                     <label>Here&apos;s your QR code!</label>
                   </div>
