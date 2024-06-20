@@ -1,0 +1,36 @@
+.reveal-container {
+    overflow: hidden;
+    width: 800px; /* Adjust the width to fit the "Hello" part */
+  }
+  
+  .reveal-image {
+    transform: translateX(480px);
+    transition: transform 1s ease-in-out;
+  }
+  
+  .reveal-image.show {
+    transform: translateX(0px); /* Adjust this value based on your image */
+  }
+  
+  .reveal-image.invert {
+    animation: invert-colors 0.1s ease-in-out;
+  }
+  
+  @keyframes invert-colors {
+    0% {
+      filter: invert(0%);
+    }
+    50% {
+      filter: invert(100%);
+    }
+    100% {
+      filter: invert(0%);
+    }
+  }
+
+  /* img {
+    -webkit-filter: drop-shadow(2px 2px 0 rgba(90, 134, 213, 1))
+                    drop-shadow(-2px -2px 0 rgba(90, 134, 213, 1));
+    filter: drop-shadow(2px 2px 0 rgba(90, 134, 213, 1)) 
+            drop-shadow(-2px -2px 0 rgba(90, 134, 213, 1));
+  } */
