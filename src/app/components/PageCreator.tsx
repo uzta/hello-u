@@ -268,7 +268,7 @@ export default function PageCreator() {
               : stage === 2 &&
                 <div className="w-full h-full border border-green-400 mt-8 flex flex-col items-start items-center gap-4">
                   <div className="w-full h-8 flex items-center justify-center text-2xl">
-                    <label>Here's your QR code!</label>
+                    <label>Here&apos;s your QR code!</label>
                   </div>
                   <Image src={"/qr-code.png"} height={500} width={500} alt="QR Code" className="border border-8 border-black rounded-2xl "/>
                   <div className="w-full h-8 flex items-center justify-center text-2xl">
