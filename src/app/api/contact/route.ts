@@ -24,8 +24,6 @@ export async function POST(request: Request) {
   const { name, phone, whatsapp, email, instagram, linkedin, website } = requestBody;
 
   try {
-    console.log("REQUEST BODY: ")
-    console.log(requestBody)
     const newContact: ContactInfo = await prisma.contactInfo.create({
       data: {
         name,

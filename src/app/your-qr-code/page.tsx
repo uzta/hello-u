@@ -9,11 +9,11 @@ export default async function Page() {
 
   const name = contactInfo?.name;
   const phone = contactInfo?.phone;
-  // const whatsapp = contactInfo?.whatsapp;
-  // const email = contactInfo?.email;
-  // const instagram = contactInfo?.instagram;
-  // const linkedin = contactInfo?.linkedin;
-  // const website = contactInfo?.website;
+  const whatsapp = contactInfo?.whatsapp;
+  const email = contactInfo?.email;
+  const instagram = contactInfo?.instagram;
+  const linkedin = contactInfo?.linkedin;
+  const website = contactInfo?.website;
 
   const DataEntryButton = ({ name, link }: { name: string, link: string }) => {
     return (
@@ -27,11 +27,11 @@ export default async function Page() {
     return (
       <div className="w-full h-full flex mt-8 flex flex-col gap-4">
         {phone && <DataEntryButton name="Phone" link={'tel:' + phone}/>}
-        {/* {whatsapp && <DataEntryButton name="Phone"/>}
-        {email && <DataEntryButton name="E-mail"/>}
-        {instagram && <DataEntryButton name="Instagram"/>}
-        {linkedin && <DataEntryButton name="LinkedIn"/>}
-        {website && <DataEntryButton name="Website"/>} */}
+        {whatsapp && <DataEntryButton name="Whatsapp" link={`https://wa.me/${whatsapp}?text=Greetings%21%20I%20got%20this%20number%20on%20your%20Hello-U`}/>}
+        {email && <DataEntryButton name="E-mail" link={`mailto:${email}?subject=Nice%20to%20meet%20you%21`}/>}
+        {instagram && <DataEntryButton name="Instagram" link={`https://www.instagram.com/${instagram}`}/>}
+        {linkedin && <DataEntryButton name="LinkedIn" link={`https://www.linkedin.com/in/${linkedin}`}/>}
+        {website && <DataEntryButton name="Website" link={website}/>}
       </div>
     )
   }

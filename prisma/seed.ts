@@ -14,8 +14,6 @@ async function main() {
       website: 'https://www.example.com',
     },
   });
-
-  console.log({ contactInfo });
 }
 
 main()

@@ -17,11 +17,9 @@ export default function SmileyBanner() {
   }, []);
   
   const handleMouseEnter = () => {
-    console.log("Hello")
     setSelected(true);
   };
   const handleMouseLeave = () => {
-    console.log("Goodbye")
     setSelected(false);
   };
 

@@ -227,8 +227,6 @@ export default function PageCreator() {
     });
   
     const jsonInfo = JSON.stringify(contactInfo)
-    console.log("CONTACT INFO: ");
-    console.log(jsonInfo);
   
     // Send the data to the backend
     try {
@@ -242,7 +240,6 @@ export default function PageCreator() {
   
       if (response.ok) {
         const data: unknown = await response.json();
-        console.log('Data saved successfully:', data);
         setStage(2);
       } else {
         console.error('Failed to save data');
