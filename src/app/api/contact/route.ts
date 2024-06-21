@@ -15,7 +15,7 @@ interface RequestBody {
 }
 
 export async function GET(_request: Request) {
-  const contactData = await prisma.contactInfo.findFirst()
+  const contactData = await prisma.contactInfo.findFirst({orderBy: {createdAt: 'desc'}})
   return NextResponse.json(contactData)
 }
 

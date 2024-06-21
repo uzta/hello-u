@@ -226,8 +226,6 @@ export default function PageCreator() {
       }
     });
   
-    const jsonInfo = JSON.stringify(contactInfo)
-  
     // Send the data to the backend
     try {
       const response = await fetch('/api/contact', {
@@ -239,7 +237,6 @@ export default function PageCreator() {
       });
   
       if (response.ok) {
-        const data: unknown = await response.json();
         setStage(2);
       } else {
         console.error('Failed to save data');
