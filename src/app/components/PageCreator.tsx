@@ -8,10 +8,21 @@ import type { ChangeEvent } from "react";
 import Introduction from "./Introduction";
 import { string } from "zod";
 import { BackIcon } from "./svgs/BackIcon";
+import { LoadingModal } from "./LoadingModal";
 
 interface ContactData {
   name: string,
   value: string|undefined
+}
+
+interface ContactInfo {
+  name: string;
+  phone?: string;
+  whatsapp?: string;
+  email?: string;
+  instagram?: string;
+  linkedin?: string;
+  website?: string;
 }
 
 interface ContactDataEntry {
@@ -109,17 +120,6 @@ export default function PageCreator() {
 
   React.useEffect(() => {
     if (shouldSubmit) {
-      const contactData: ContactData[] = entries
-        .filter(entry => entry.visible && entry.valid) // Filter by 'visible' property being true
-        .map(entry => ({
-          name: entry.name,
-          value: entry.value, // Use prefix if available, otherwise use name as value
-        }));
-
-      const finalData: ContactData[] = [{ name: "Name", value: name }, ...contactData];
-
-      console.log("FINAL DATA: ");
-      console.log(finalData);
       setShouldSubmit(false); // Reset the flag after submission
     }
   }, [shouldSubmit, entries, name]);
@@ -188,9 +188,71 @@ export default function PageCreator() {
     );
   };
 
-  const generateCode = () => {
-    setStage(2)
-  }  
+  const generateCode = async () => {
+    // Mapping visible and valid entries to contactData
+    const contactData: ContactData[] = entries
+      .filter(entry => entry.visible && entry.valid)
+      .map(entry => ({
+        name: entry.name,
+        value: entry.value ?? '',
+      }));
+  
+    // Initial contactInfo object with 'name' property
+    let contactInfo: ContactInfo = { name: name ?? '' };
+  
+    // Loop through contactData to populate contactInfo based on entry name
+    contactData.forEach(entry => {
+      switch (entry.name) {    
+        case 'Phone':
+          contactInfo = { ...contactInfo, phone: entry.value };
+          break;
+        case 'Whatsapp':
+          contactInfo = { ...contactInfo, whatsapp: entry.value };
+          break;
+        case 'E-mail':
+          contactInfo = { ...contactInfo, email: entry.value };
+          break;
+        case 'Instagram':
+          contactInfo = { ...contactInfo, instagram: entry.value };
+          break;
+        case 'LinkedIn':
+          contactInfo = { ...contactInfo, linkedin: entry.value };
+          break;
+        case 'Website':
+          contactInfo = { ...contactInfo, website: entry.value };
+          break;
+        default:
+          break;
+      }
+    });
+  
+    const jsonInfo = JSON.stringify(contactInfo)
+    console.log("CONTACT INFO: ");
+    console.log(jsonInfo);
+  
+    // Send the data to the backend
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(contactInfo),
+      });
+  
+      if (response.ok) {
+        const data: unknown = await response.json();
+        console.log('Data saved successfully:', data);
+        setStage(2);
+      } else {
+        console.error('Failed to save data');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+  
 
   const ContactTable = () => {
     return (
@@ -234,6 +296,7 @@ export default function PageCreator() {
       </>
     ) : (
       <>
+        <LoadingModal/>
         <BackArrow/>
         <div className="absolute top-24 h-5/6 w-2/3 z-20">
           <div className="mockup-phone w-1/3 h-full">
