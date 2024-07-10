@@ -50,10 +50,10 @@ const ContactInfoJulian = () => {
         {whatsapp && (
           <DataEntryButton
             name="Whatsapp"
-            link={`https://wa.me/${whatsapp}?text=Greetings%21%20I%20got%20this%20number%20on%20your%20Hello-U`}
+            link={`https://wa.me/${whatsapp}?text=Hello%21%20We%20met%20at%20the%20Tech%20%26%20Business%20Networking%20event%20in%20Seattle`}
           />
         )}
-        {email && <DataEntryButton name="E-mail" link={`mailto:${email}?subject=Nice%20to%20meet%20you%21`} />}
+        {email && <DataEntryButton name="E-mail" link={`mailto:${email}?subject=Hello%2C%20Julian%21`} />}
         {instagram && <DataEntryButton name="Instagram" link={`https://www.instagram.com/${instagram}`} />}
         {linkedin && <DataEntryButton name="LinkedIn" link={`https://www.linkedin.com/in/${linkedin}`} />}
         {website && <DataEntryButton name="Website" link={website} />}
